@@ -26,8 +26,7 @@ public class Exam3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_exam3);
 
         //RecyclerView3Adapter 생성, 우리가 만들어준 Adapter를 생성한 것입니다.
-        recyclerView3Adapter = new RecyclerView3Adapter(this,
-                (memo) -> startMemoActivityForResult(REQUEST_EDIT, memo));//Lambda Expressions 함수 주의 사항은,  여기선  우리가 정의한 Interface 와 매개변수등 맞추어서 코딩해야 한다는 점입니다.
+        recyclerView3Adapter = new RecyclerView3Adapter(this);//Lambda Expressions 함수 주의 사항은,  여기선  우리가 정의한 Interface 와 매개변수등 맞추어서 코딩해야 한다는 점입니다.
         //Lambda Expressions 에서, ->이후는 함수의 몸체입니다.//매개변수 인자전달은 RecyclerView3Adapter 에서 합니다.
         //Lambda Expressions 함수는 익명 함수와 비슷하다고 보면 됩니다.//Lambda Expressions 함수는 이미 정의된 해당 Interface 로만 정의되어야 한다.
 
@@ -37,6 +36,9 @@ public class Exam3Activity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(recyclerView3Adapter);//recyclerView에 recyclerView3Adapter를 등록해주었습니다.
+
+        recyclerView3Adapter.add(new Memo("one"));
+        recyclerView3Adapter.add(new Memo("two"));
 
     }
 
@@ -50,9 +52,6 @@ public class Exam3Activity extends AppCompatActivity {
     @Override public boolean onOptionsItemSelected(MenuItem item) {//메뉴가 클릭될 때의 리스너입니다.
         int id = item.getItemId();
         if (id == R.id.action_create) {//생성 버튼 눌릴 때
-            //MemoActivity으로 넘어가도록 해주었습니다.
-            //Intent intent = new Intent(this, MemoActivity.class);
-            //startActivityForResult(intent, REQUEST_CREATE);//리턴 받을 때, 구분을 위해서 startActivityForResult로 REQUEST_CREATE 전달 했습니다.
             startMemoActivityForResult(REQUEST_CREATE, null);
             return true;
         }
