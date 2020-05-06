@@ -39,7 +39,6 @@ public class Exam3Activity extends AppCompatActivity {
 
         recyclerView3Adapter.add(new Memo("one"));
         recyclerView3Adapter.add(new Memo("two"));
-
     }
 
     @Override
@@ -52,7 +51,7 @@ public class Exam3Activity extends AppCompatActivity {
     @Override public boolean onOptionsItemSelected(MenuItem item) {//메뉴가 클릭될 때의 리스너입니다.
         int id = item.getItemId();
         if (id == R.id.action_create) {//생성 버튼 눌릴 때
-            startMemoActivityForResult(REQUEST_CREATE, null);
+            startMemoActivityForResult(REQUEST_CREATE);
             return true;
         }
         return super.onOptionsItemSelected(item);//모르는 메뉴 눌렸을 때 호출
@@ -71,10 +70,8 @@ public class Exam3Activity extends AppCompatActivity {
         }
     }
 
-    //MemoActivity 를 호출하는 함수를, RecyclerView3Activity 한 곳에 모으기 위해서 이렇게 했습니다.//다른 Activity 를 호출하는 코드는 액티비티 내부에 구현//RecyclerView3Adapter 는 Activity 를 참조하지 않는 게 좋다.
-    private void startMemoActivityForResult(int requestCode, Memo memo) {//requestCode와 Memo 객체로 intent하는 함수입니다.
+    private void startMemoActivityForResult(int requestCode) {
         Intent intent = new Intent(this, Exam3EditActivity.class);
-        intent.putExtra("MEMO", memo);
         startActivityForResult(intent, requestCode);
     }
 }
