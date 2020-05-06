@@ -15,9 +15,7 @@ import android.view.MenuItem;
 public class Exam3Activity extends AppCompatActivity {
 
     public static final int REQUEST_CREATE = 0;
-    public static final int REQUEST_EDIT = 1;
 
-    int memoIndex;
     RecyclerView3Adapter recyclerView3Adapter;
 
     @Override
